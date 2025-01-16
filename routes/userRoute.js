@@ -9,7 +9,7 @@ userRouter.get("/all-doctors", (req, res) => {
   `;
   dbConnect.query(getAllDoctors, (err, result) => {
     if (err) {
-      return res.status(400).send("Query Error");
+      return res.status(400).send(err);
     } else {
       return res.status(200).send(result);
     }
