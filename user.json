@@ -1,0 +1,47 @@
+[
+  {
+    "name": "admin",
+    "email": "admin@gmail.com",
+    "password": "adminpsw",
+    "role": "admin",
+    "jwtToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczNjAwNjI1MH0.uv91ghCwcpufTFe2pxH5wNUkpyXrAeZi97W0kGIr40g"
+  },
+  {
+    "name": "srinivas",
+    "email": "srinivas@gmail.com",
+    "password": "srinivas",
+    "role": "user",
+    "jwtToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNyaW5pdmFzQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzM2MDA2NDUyfQ.MJ30SRD0N5vD2hUr60_c8-Ukd5MqwXMQauCwhIRPDp4"
+  },
+  {
+    "name": "swathi",
+    "email": "swathi@gmail.com",
+    "password": "swathi",
+    "role": "user",
+    "jwtToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN3YXRoaUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTczNjAwNjQxMn0.jFygGzhPIoxy9Lzd0QoIIWF_2J2CXYVF2gVmBviziE4"
+  },
+  {
+    "name": "srujana",
+    "email": "srujana@gmail.com",
+    "password": "srujana",
+    "role": "user"
+  },
+  {
+    "name": "rahul",
+    "email": "rahul@gmail.com",
+    "password": "rahul",
+    "role": "user",
+    "jwtToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhaHVsQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzM2MDA2MjExfQ.2NvBydYqa-0g7_MjYfHxeltetUgOfo0Rl02a5RQgaVk"
+  },
+  {
+    "username": "admin",
+    "email": "admin@123",
+    "password": "admin"
+  }
+]
+
+// { "user_id":"5",
+// "doctor_id":"12",
+// "appointment_date":"04-01-2025",
+// "appointment_time":"10:30",
+// "status":"booked" }
