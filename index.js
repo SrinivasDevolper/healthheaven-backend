@@ -21,8 +21,9 @@ app.get("/", (req, res) => {
   return res.send("working");
 });
 const port = process.env.PORT || 4000;
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+server.setTimeout(30000);
 
 // POST Endpoint for File Upload

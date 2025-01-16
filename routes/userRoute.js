@@ -10,9 +10,11 @@ userRouter.get("/all-doctors", (req, res) => {
   dbConnect.query(getAllDoctors, (err, result) => {
     if (err) {
       return res.status(400).send(err);
-    } else {
-      return res.status(200).send(result);
     }
+    if (result.affectedRows === 0) {
+      return res.status(400).send({ message: "affectedRows" });
+    }
+    return res.status(200).send(result);
   });
 });
 userRouter.get("/user-profile/:email", (req, res) => {
@@ -181,13 +183,13 @@ userRouter.put("/user-appointments/:id", (req, res) => {
 
     // Return appropriate response based on status
     if (status === "paid") {
-      return res.status(200).send({ message: "Payment Successfully" });
+      return res.status(200).json({ message: "Payment Successfully" });
     } else if (status === "cancel") {
       return res
         .status(200)
-        .send({ message: "Successfully Appointment Canceled" });
+        .json({ message: "Successfully Appointment Canceled" });
     } else {
-      return res.status(200).send({ message: "Appointment status updated" });
+      return res.status(200).json({ message: "Appointment status updated" });
     }
   });
 });

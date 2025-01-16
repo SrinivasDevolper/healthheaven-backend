@@ -5,13 +5,10 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const authMiddleware = (req, res, next) => {
-  const { authorization } = req.headers;
-  if (!authorization.split(" ")[1]) {
-    // console.log(authorization, "authorization");
-    return res.status(404).send("Please Login");
+  const token = req.headers.authorization?.split(" ")[1];
+  if (!token) {
+    return res.status(401).json({ error: "Token not provided" });
   }
-  const jwtToken = authorization.split(" ")[1];
-  // console.log("jwtToken", jwtToken);
   jwt.verify(
     jwtToken,
     process.env.SECRET_TOKEN,
