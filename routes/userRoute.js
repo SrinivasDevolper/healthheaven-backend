@@ -3,6 +3,7 @@ const userRouter = express.Router();
 const authMiddleware = require("../middlewares/auth");
 const roleMiddleWare = require("../middlewares/roleMiddleware");
 const dbConnect = require("../config/db");
+
 userRouter.get("/all-doctors", (req, res) => {
   const getAllDoctors = `
     SELECT * FROM healthhaven.doctors
@@ -57,7 +58,6 @@ userRouter.put(
     SET name = ?
     WHERE id = ?
   `;
-
     // Execute the first query
     dbConnect.query(
       postUserProfile,
@@ -82,49 +82,35 @@ userRouter.put(
   }
 );
 
-userRouter.post(
-  "/user-appointments",
-  authMiddleware,
-  roleMiddleWare("admin", "user"),
-  (req, res) => {
-    const { user_id, doctor_id, appointment_date, appointment_time, status } =
-      req.body; // Extract all required fields from req.body
-    console.log(
-      user_id,
-      doctor_id,
-      appointment_date,
-      appointment_time,
-      status,
-      req.body,
-      "status"
-    );
-    const selectUser = "select * from users where id=?";
-    dbConnect.query(selectUser, [user_id], (err, result) => {
-      if (err) {
-        return res.send("invalid user");
-      }
-      const postAppointment = `
+userRouter.post("/user-appointments", (req, res) => {
+  const { user_id, doctor_id, appointment_date, appointment_time, status } =
+    req.body; // Extract all required fields from req.
+  const selectUser = "select * from users where id=?";
+  dbConnect.query(selectUser, [user_id], (err, result) => {
+    if (err) {
+      return res.send("invalid user");
+    }
+    const postAppointment = `
   INSERT INTO healthhaven.appointments(user_id, doctor_id, appointment_date, appointment_time, status)
   VALUES (?, ?, ?, ?, ?)
 `;
-      // Execute the query
-      dbConnect.query(
-        postAppointment,
-        [user_id, doctor_id, appointment_date, appointment_time, status], // Pass correct array of values
-        (err, result) => {
-          if (err) {
-            console.error("Database Query Error:", err); // Log the error for debugging
-            return res.status(500).send({ message: "Internal Server Error" }); // Send proper HTTP status code
-          } else {
-            return res
-              .status(200)
-              .send({ message: "Appointment Added Successfully" });
-          }
+    // Execute the query
+    dbConnect.query(
+      postAppointment,
+      [user_id, doctor_id, appointment_date, appointment_time, status], // Pass correct array of values
+      (err, result) => {
+        if (err) {
+          console.error("Database Query Error:", err); // Log the error for debugging
+          return res.status(500).send({ message: "Internal Server Error" }); // Send proper HTTP status code
+        } else {
+          return res
+            .status(200)
+            .send({ message: "Appointment Added Successfully" });
         }
-      );
-    });
-  }
-);
+      }
+    );
+  });
+});
 
 userRouter.get("/user-appointments/:email", (req, res) => {
   const { email } = req.params;

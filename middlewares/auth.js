@@ -10,17 +10,15 @@ const authMiddleware = (req, res, next) => {
     return res.status(401).json({ error: "Token not provided" });
   }
   jwt.verify(
-    jwtToken,
+    token,
     process.env.SECRET_TOKEN,
     {
       expiresIn: "30d",
     },
     (err, result) => {
       if (err) {
-        console.log(err, "err");
         return res.status(401).send("Invalid jwtToken");
       } else {
-        // console.log(result);
         req.users = result;
         next();
       }

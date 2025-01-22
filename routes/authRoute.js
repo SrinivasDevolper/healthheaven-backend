@@ -7,7 +7,6 @@ const dotenv = require("dotenv");
 dotenv.config();
 RouterAuth.post("/register", async (req, res) => {
   const { name, email, password, role = "user" } = req.body;
-
   const bcryptPassword = await bcrypt.hash(password, 10);
   if (!name || !email || !password) {
     return res.status(400).send("Please Enter Full details");
@@ -22,6 +21,7 @@ RouterAuth.post("/register", async (req, res) => {
         res.status(400).send({ message: "Get Query Error" });
       } else {
         if (result.length > 0) {
+          console.log("register Ok");
           res.status(422).send({ message: "User Already Exists" });
         } else {
           if (!bcryptPassword) {
@@ -68,6 +68,7 @@ RouterAuth.post("/login", async (req, res) => {
         return res.status(400).send({ message: "Get Query Error" });
       }
       if (result.length === 0) {
+        console.log("register Ok");
         return res
           .status(402)
           .send({ message: "Please register for an account" });

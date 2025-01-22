@@ -145,6 +145,7 @@ adminRouter.get(
   `;
     dbConnect.query(getDoctorCount, (err, result) => {
       if (err) {
+        console.log(err, "err");
         return res.status(500).send("Internal Sever Error");
       } else {
         return res.status(200).send(result);
